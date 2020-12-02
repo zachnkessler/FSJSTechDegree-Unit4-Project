@@ -26,11 +26,10 @@
         this.activePhrase.addPhraseToDisplay();
      };
      handleInteraction(key) {
-        let selectedKey = key.innerHTML;
         key.disabled = true;
-        if (this.activePhrase.checkLetter(selectedKey) === true) {
+        if (this.activePhrase.checkLetter(key.textContent) === true) {
             key.classList = "chosen";
-            this.activePhrase.showMatchedLetter(selectedKey);
+            this.activePhrase.showMatchedLetter(key.textContent);
             if (this.checkForWin() === true) {
                 this.gameOver(false);
             }
@@ -71,8 +70,8 @@
          }
      };
      resetGame() {
-        let ul = document.querySelector("ul");
-        let letterItems = ul.children;
+        let ul = document.querySelector("#phrase ul");
+        let letterItems = Array.from(ul.children);
         for (let i = 0; i < letterItems.length; i++) {
             ul.removeChild(letterItems[i]);
         };
