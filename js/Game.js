@@ -63,9 +63,26 @@
          if (boolean === true) {
              gameOverMessage.innerHTML = "Sorry, better luck next time!";
              overlay.classList = "lose";
+             this.resetGame();
          } else if (boolean === false) {
              gameOverMessage.innerHTML = "You are a winner!"
              overlay.classList = "win";
+             this.resetGame();
          }
-     }
+     };
+     resetGame() {
+        let ul = document.querySelector("ul");
+        let letterItems = ul.children;
+        for (let i = 0; i < letterItems.length; i++) {
+            ul.removeChild(letterItems[i]);
+        };
+        for (let i = 0; i < letterKeys.length; i++) {
+            letterKeys[i].disabled = false;
+            letterKeys[i].classList = "key";
+        };
+        let images = document.querySelectorAll("#scoreboard img");
+        for (let i = 0; i < images.length; i++) {
+            images[i].src = "images/liveHeart.png";
+        };
+     };
  }
