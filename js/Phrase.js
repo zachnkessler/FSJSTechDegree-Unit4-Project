@@ -29,11 +29,10 @@
         }
     };
     showMatchedLetter(letter) {
-        const letterSelected = letter.textContent;
-        const phraseLetters = document.querySelectorAll("li.hide.letter");
+        const phraseLetters = document.querySelector("#phrase").firstElementChild.children;
         for (let i = 0; i < phraseLetters.length; i++) {
-            if (phraseLetters[i] === letterSelected) {
-                phraseLetters[i].classList = `show letter ${letterSelected}`;
+            if (phraseLetters[i].textContent === letter) {
+                phraseLetters[i].classList = `show letter ${letter}`;
             }
         }
     }; 

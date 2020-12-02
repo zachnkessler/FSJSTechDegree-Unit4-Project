@@ -25,18 +25,19 @@
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
      };
-     handleInteraction(letter) {
-        if (this.activePhrase.includes(letter)) {
-            letter.classList = 'chosen';
-            letter.setAttribute("disabled", "");
-            this.activePhrase.showMatchedLetter(letter);
-            game.checkForWin();
+     handleInteraction(key) {
+        let letterSelected = key.innerHTML;
+        if (this.activePhrase.includes(letterSelected)) {
+            key.classList = "chosen";
+            this.activePhrase.showMatchedLetter(letterSelected);
+            if (this.checkForWin() === true) {
+                this.gameOver(true);
+            }
         } else {
-            letter.classList = 'wrong';
-            letter.setAttribute("disabled", "");
-            game.removeLife();
+            key.classList = "wrong";
+            this.removeLife();
         }
-     };
+    };
      checkForWin() {
         const letterLI = document.querySelectorAll("li.hide.letter");
         if (letterLI.length === 0) {
@@ -58,10 +59,10 @@
          const overlay = document.getElementById("overlay");
          overlay.style.display = "block";
          const gameOverMessage = document.getElementById("game-over-message");
-         if (boolean === true) {
+         if (boolean === false) {
              gameOverMessage.innerHTML = "Sorry, better luck next time!";
              overlay.classList = "lose";
-         } else if (boolean === false) {
+         } else if (boolean === true) {
              gameOverMessage.innerHTML = "You are a winner!"
              overlay.classList = "win";
          }
