@@ -26,7 +26,18 @@
         this.activePhrase.addPhraseToDisplay();
      };
      handleInteraction(key) {
-        console.log(key);
+        let selectedKey = key.innerHTML;
+        key.disabled = true;
+        if (this.activePhrase.checkLetter(selectedKey) === true) {
+            key.classList = "chosen";
+            this.activePhrase.showMatchedLetter(selectedKey);
+            if (this.checkForWin() === true) {
+                this.gameOver(false);
+            }
+        } else {
+            key.classList = "wrong";
+            this.removeLife();
+        }
     };
      checkForWin() {
         const letterLI = document.querySelectorAll("li.hide.letter");
@@ -49,10 +60,10 @@
          const overlay = document.getElementById("overlay");
          overlay.style.display = "block";
          const gameOverMessage = document.getElementById("game-over-message");
-         if (boolean === false) {
+         if (boolean === true) {
              gameOverMessage.innerHTML = "Sorry, better luck next time!";
              overlay.classList = "lose";
-         } else if (boolean === true) {
+         } else if (boolean === false) {
              gameOverMessage.innerHTML = "You are a winner!"
              overlay.classList = "win";
          }
