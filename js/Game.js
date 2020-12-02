@@ -26,17 +26,7 @@
         this.activePhrase.addPhraseToDisplay();
      };
      handleInteraction(key) {
-        let letterSelected = key.innerHTML;
-        if (this.activePhrase.includes(letterSelected)) {
-            key.classList = "chosen";
-            this.activePhrase.showMatchedLetter(letterSelected);
-            if (this.checkForWin() === true) {
-                this.gameOver(true);
-            }
-        } else {
-            key.classList = "wrong";
-            this.removeLife();
-        }
+        console.log(key);
     };
      checkForWin() {
         const letterLI = document.querySelectorAll("li.hide.letter");
